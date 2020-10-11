@@ -1,26 +1,18 @@
 package com.aceba1.dnd.calc;
 
-import java.util.Arrays;
-import java.util.MissingFormatArgumentException;
-import java.util.Random;
-import java.util.stream.Collectors;
+import com.aceba1.util.Die;
 
-public class DamageDice {
+public class DamageDice extends Die {
 
   public final static String diceRegex = "^(0*[1-9]+[0-9]*|)d(0*[1-9]+[0-9]*)$";
 
-  private final static Random random = new Random();
-
-  private String dice;
+  private final String dice;
 
   public DamageDice(String dice) {
     this.dice = dice;
   }
 
-  public void setDice(String dice) {
-    this.dice = dice;
-  }
-
+  @Override
   public int roll() {
     return roll(dice);
   }
@@ -39,8 +31,8 @@ public class DamageDice {
   }
 
   public static int roll(String dice) {
-    if (!testFormat(dice))
-      throw new MissingFormatArgumentException("Input not of format '{X?}d{Y}");
+    // Arguments are pre-checked (trusted code), otherwise uncomment below
+    //  if (!testFormat(dice)) throw new IllegalArgumentException("Input not of format '{X?}d{Y}");
 
     String[] sides = dice.split("d", 2);
 
@@ -51,7 +43,7 @@ public class DamageDice {
 
     int sum = 0;
     for (int i = 0; i < count; i++) {
-      sum += random.nextInt(range) + 1;
+      sum += roll(range);
     }
     return sum;
   }
