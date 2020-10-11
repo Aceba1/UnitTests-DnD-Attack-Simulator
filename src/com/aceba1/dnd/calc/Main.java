@@ -17,8 +17,9 @@ public class Main {
       String dice = getDice("Damage Dice: ");
 
       System.out.println();
-      int damage = Calculator.attack(ac, defenseMod, attackMod, dice);
       // Do something with this?
+      int damage = Calculator.attack(ac, defenseMod, attackMod, dice);
+      System.out.println();
     }
   }
 
