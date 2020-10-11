@@ -22,6 +22,11 @@ public class DamageDice {
     return roll(dice);
   }
 
+  @Override
+  public String toString() {
+    return dice;
+  }
+
   public static String format(int count, int range) {
     return (count > 1 ? count : "") + "d" + range;
   }
